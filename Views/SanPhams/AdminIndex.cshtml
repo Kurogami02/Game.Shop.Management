@@ -1,0 +1,92 @@
+﻿@model IEnumerable<NetCRUD2.Models.SanPham>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<main class="app-content">
+    <div class="app-title">
+        <ul class="app-breadcrumb breadcrumb side">
+            <li class="breadcrumb-item active"><a href="#"><b>Danh sách sản phẩm</b></a></li>
+        </ul>
+        <div id="clock"></div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="tile">
+                <div class="tile-body">
+                    <div class="row element-button">
+                        <div class="col-sm-2">
+
+                            <a class="btn btn-add btn-sm" asp-action="Create" title="Thêm">
+                                <i class="fas fa-plus"></i>
+                                Tạo mới sản phẩm
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                    <table class="table table-hover table-bordered" id="sampleTable">
+                        <thead>
+                            <tr>
+                                <th>
+                                    Hãng
+                                </th>
+                                <th>
+                                    Hệ điều hành
+                                </th>
+                                <th>
+                                    Sản phẩm
+                                </th>
+                                <th>
+                                    Gía
+                                </th>
+                        
+                                <th>
+                                    Mô tả
+                                </th>
+                                <th>
+                                    Ảnh
+                                </th>
+                                <th width="100">Tính năng</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.LoaiGame.Tenloaigame)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Nhaphathanh)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Tensp)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Giatien)
+                                    </td>
+                                    
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Mota)
+                                    </td>
+                                    <td>
+                                        <img src=@("~/images/"+item.Anhbia) width="40px" height="40px" asp-append-version="true" />
+                                    </td>
+
+                                    <td class="table-td-center">
+                                        <a asp-action="Edit" asp-route-id="@item.ID">Edit</a> |
+                                        <a asp-action="Delete" asp-route-id="@item.ID">Delete</a>
+                                        
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
